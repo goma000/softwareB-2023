@@ -6,14 +6,16 @@
 </head>
 <body>
     <h1>注文内容確認</h1>
-    <p>注文内容: {{ order['menu'] }}</p>
-    <p>受け取り場所: {{ order['pickup_location'] }}</p>
+    <p>メニュー: {{ menu.name }} - {{ menu.store }} - ¥{{ menu.price }}</p>
+    <p>割引: -¥{{ discount }}</p>
+    <p>小計: ¥{{ subtotal }}</p>
+    <p>手数料: ¥{{ fee }}</p>
+    <p>合計: ¥{{ total }}</p>
+    <p>支払い方法: {{ payment_method }}</p>
+    <p>受け取り場所: {{ pickup_location }}</p>
     <p>予想到着時間: 11:35</p>
-    <p>値段: ¥{{ order['price'] }}</p>
-    <p>割引: {{ order['discount'] }}</p>
-    <p>手数料: 3%</p>
-    <p>合計: ¥{{ order['total'] }}</p>
-    <form action="{{ url_for('finalize') }}" method="post">
+    <!-- 値段、割引、手数料、合計などの表示 -->
+    <form action="{{ url_for('finalize_order') }}" method="post">
         <input type="submit" value="確定">
     </form>
 </body>

@@ -2,11 +2,11 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>支払い方法の選択</title>
+    <title>支払い方法選択</title>
 </head>
 <body>
-    <h1>支払い方法の選択</h1>
-    <form action="{{ url_for('confirmation') }}" method="post">
+    <h1>支払い方法選択</h1>
+    <form action="{{ url_for('select_payment') }}" method="post">
         <input type="radio" id="credit_card" name="payment_method" value="credit_card">
         <label for="credit_card">クレジットカード</label><br>
         <input type="radio" id="electronic_payment" name="payment_method" value="electronic_payment">

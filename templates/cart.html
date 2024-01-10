@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- ... -->
+</head>
+<body>
+    <h1>カート</h1>
+    <ul>
+        {% for item in cart_items %}
+            <li>{{ item.name }} - {{ item.store }} - ¥{{ item.price }}</li>
+        {% endfor %}
+    </ul>
+    <!-- ここにチェックアウトのロジックを追加する -->
+</body>
+</html>

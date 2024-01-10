@@ -6,11 +6,11 @@
 </head>
 <body>
     <h1>受け取り場所選択</h1>
-    <form action="{{ url_for('confirmation') }}" method="post">
+    <form action="{{ url_for('select_pickup') }}" method="post">
         <select name="pickup_location">
             <option value="場所A">場所A</option>
             <option value="場所B">場所B</option>
-            <!-- その他の場所 -->
+            <!-- その他の場所をここに追加 -->
         </select>
         <input type="submit" value="次へ">
     </form>
