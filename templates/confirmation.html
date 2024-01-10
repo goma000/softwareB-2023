@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>注文内容確認</title>
+</head>
+<body>
+    <h1>注文内容確認</h1>
+    <p>注文内容: {{ order['menu'] }}</p>
+    <p>受け取り場所: {{ order['pickup_location'] }}</p>
+    <p>予想到着時間: 11:35</p>
+    <p>値段: ¥{{ order['price'] }}</p>
+    <p>割引: {{ order['discount'] }}</p>
+    <p>手数料: 3%</p>
+    <p>合計: ¥{{ order['total'] }}</p>
+    <form action="{{ url_for('finalize') }}" method="post">
+        <input type="submit" value="確定">
+    </form>
+</body>
+</html>

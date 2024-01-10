@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ category }}のメニュー</title>
+</head>
+<body>
+    <h1>{{ category }}のメニュー</h1>
+    <ul>
+        {% for menu in menus %}
+            <li>{{ menu.name }} - {{ menu.store }} - ¥{{ menu.price }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
