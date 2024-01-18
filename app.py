@@ -15,45 +15,40 @@ class Menu(db.Model):
 
 @app.route('/')
 def index():
-    categories = Menu.query.distinct(Menu.category).all()
+    categories = Menu.query.with_entities(Menu.category).distinct().all()
     return render_template('menu_selection.html', categories=categories)
+
+@app.route('/menu_by_category/<category>')
+def menu_by_category(category):
+    menus = Menu.query.filter_by(category=category).all()
+    return render_template('menu_category.html', menus=menus, category=category)
+
 
 @app.route('/menu/<category>')
 def menu(category):
     menus = Menu.query.filter_by(category=category).all()
-    return render_template('menu.html', menus=menus, category=category)
+    stores = Menu.query.with_entities(Menu.store).distinct().all()
+    return render_template('menu.html', menus=menus, category=category, stores=stores)
+
 
 @app.route('/select_menu', methods=['POST'])
 def select_menu():
     session['selected_menu'] = request.form['menu_id']
-    return redirect(url_for('pickup_location'))
+    return redirect(url_for('options'))
 
-@app.route('/pickup_location')
-def pickup_location():
-    return render_template('pickup.html')
+@app.route('/options')
+def options():
+    menu_id = session.get('selected_menu')
+    selected_menu = Menu.query.get(menu_id) if menu_id else None
+    return render_template('option.html', selected_menu=selected_menu)
 
-@app.route('/select_pickup', methods=['POST'])
-def select_pickup():
-    session['pickup_location'] = request.form['pickup_location']
-    return redirect(url_for('coupon_selection'))
-
-@app.route('/coupon_selection')
-def coupon_selection():
-    return render_template('coupon.html')
-
-@app.route('/select_coupon', methods=['POST'])
-def select_coupon():
-    session['coupon'] = request.form['coupon']
-    return redirect(url_for('payment_method'))
-
-@app.route('/payment_method')
-def payment_method():
-    return render_template('payment.html')
-
-@app.route('/select_payment', methods=['POST'])
-def select_payment():
-    session['payment_method'] = request.form['payment_method']
+@app.route('/select_options', methods=['POST'])
+def select_options():
+    session['pickup_location'] = request.form.get('pickup_location', 'default_pickup_location')
+    session['coupon'] = request.form.get('coupon', 'no_coupon')
+    session['payment_method'] = request.form.get('payment_method', 'default_payment')
     return redirect(url_for('order_confirmation'))
+
 def calculate_total_price(menu_price, coupon, fee_rate=0.03):
     """注文の合計金額を計算する関数"""
     discount = 0
@@ -100,5 +95,46 @@ def receipt():
 def share():
     return render_template('share.html')
 
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+
+@app.route('/add_menu', methods=['POST'])
+def add_menu():
+    # フォームからのデータを取得
+    category = request.form.get('category')
+    name = request.form.get('name')
+    store = request.form.get('store')
+    price = request.form.get('price')
+
+    # 新しいメニューアイテムを作成してデータベースに追加
+    if category and name and store and price:
+        new_menu = Menu(category=category, name=name, store=store, price=price)
+        db.session.add(new_menu)
+        db.session.commit()
+        return redirect(url_for('admin'))
+    else:
+        # データが不足している場合はエラーメッセージを表示
+        return "必要なデータが不足しています", 400
+
+@app.route('/delete_menu', methods=['POST'])
+def delete_menu():
+    # フォームからIDを取得
+    menu_id = request.form.get('id')
+
+    # 指定されたIDのメニューをデータベースから削除
+    if menu_id:
+        menu_to_delete = Menu.query.get(menu_id)
+        if menu_to_delete:
+            db.session.delete(menu_to_delete)
+            db.session.commit()
+            return redirect(url_for('admin'))
+        else:
+            return "指定されたIDのメニューが見つかりません", 404
+    else:
+        return "IDが指定されていません", 400
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
+
