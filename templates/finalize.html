@@ -7,8 +7,16 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>注文確定</h1>
-    <p>進捗: 調理中 -> 配達中 -> 配達完了</p>
-    <a href="{{ url_for('receipt') }}">受け取り画面へ</a>
+    <header></header>
+    <div class="content margin-content">
+    <h1>配達状況</h1>
+    <div class="state-text">
+        {{ state_text|replace('\n', '<br>')|safe }}
+    </div>
+    <div class="state-bar">
+        <img src="{{ url_for('static', filename='state.png') }}" alt="配達状況" class="state-img">
+    </div>
+    <a href="{{ url_for('receipt') }}" class="btn submit-btn">受け取り画面へ</a>
+    </div>
 </body>
 </html>

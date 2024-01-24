@@ -1,5 +1,6 @@
 p,a,li,span,div,button,h1,h2,h3,h4,h5,h6 {
-  font-size: 50px;
+  font-size: 45px;
+  font-family: Inter;
 }
 body {
   background-color: #efefef;
@@ -22,10 +23,48 @@ a {
 
 header {
   width: 100%;
-  height: 150px;
+  height: 200px;
   background: #89B69E;
-  z-index: -1;
+  padding: 20px;
+  z-index: 0;
+  .bg-body-tertiary {
+    background-color: #89B69E;
+  }
+  .navbar {
+    background: #89B69E !important;
+    width: 100%;
+    height: 150px;
+  }
+  .navbar-toggler {
+    background: #0EA554 !important;
+    border-color: none;
+    height: 120px;
+    width: 120px;
+    border-radius: 8px;
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+  }
+  .search-box {
+    width: 750px;
+    height: 60px;
+    .input-group-text {
+      width: 80px;
+      text-align: center;
+      align-items: center;
+      display: inline-grid;
+    }
+    .form-control {
+      font-size: 40px;
+      height: 50px;
+    }
+  }
+  .navbar-collapse {
+    z-index: 100;
+  }
 }
+
+
 
 .container {
   width: 100%;
@@ -35,16 +74,26 @@ header {
   align-items: center;
 }
 
-.content {
-  background-color: #efefef;
+.content-wrapper {
+  width: 100%;
+  height: 1747px;
+  margin: 0px 0px 0px 0px;
+  background-color: #89b69ec2 !important;
+  z-index: 50;
+  position: absolute;
 }
 
+.content {
+  background-color: #efefef;
+  position: relative;
+
+  
 .nav-tabs {
   width: 100%;
   background: #89B69E;
 }
 .nav-item {
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 20px 20px 0px 0px;
   border: 1px solid #D9D9D9;
   background: #FFFEFE;
   width: 24%;
@@ -53,6 +102,7 @@ header {
   .nav-link {
     color: #232121;
     text-align: center;
+    font-size: 40px;
   }
 }
 
@@ -60,12 +110,12 @@ header {
   width: 28%;
   height: 120px;
   margin-top: 0px;
+  .nav-link {
+    font-size: 50px;
+  }
 }
 
 .nav-item:hover {
-  width: 28%;
-  height: 120px;
-  margin-top: 0px;
   .nav-link {
     color: #232121;
   }
@@ -77,6 +127,7 @@ header {
 
 .card {
   background-color: white;
+  z-index: 1;
 }
 
 .card-link {
@@ -92,8 +143,111 @@ header {
   margin-left: 50px;
 }
 
-.place-image {
-  width: 350px;
-  height: 220px;
-  border-radius: 10px;
+.btn {
+  min-width: 228px;
+  height: 68px;
+  border-radius: 12px;
+  background: #0EA554;
+  color: #FFFEFE;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.submit-btn {
+  position:fixed;
+  top: 1600px;
+  left: 650px;
+  min-width: 240px;
+  height: 75px;
+}
+
+.btn:first-child:active {
+  background: #0b7f41;
+}
+
+.form-check-input {
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.50);
+}
+
+.form-check-input:checked {
+  background-color: #0EA554;
+  border-color: #0EA554;
+}
+
+.place-menu {
+  margin: 50px;
+  border-radius: 20px;
+  background: rgba(137, 182, 158, 0.50);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.place-check-input {
+  margin-top: 115px;
+}
+.place-select {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  height: 250px;
+  width: 750px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  .place-image {
+    width: 350px;
+    height: 220px;
+    display: flex;
+    border-radius: 20px;
+    border: 2px solid #989898;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.mb-160 {
+  margin-bottom: 160px;
+}
+
+.mb-70 {
+  margin-bottom: 70px;
+}
+
+.col-label {
+  font-size: 45px;
+}
+.col-label-2 {
+  font-size: 40px;
+  padding-left: 50px;
+}
+
+.col-label-3 {
+  font-size: 45px;
+  padding-left: 50px;
+}
+
+.state-text {
+  width: 850px;
+  height: 246px;
+  padding-top: 60px;
+  background: #C4DBCF;
+  text-align: center;
+  align-items: center;
+}
+
+.state-bar {
+  margin-top: 150px;
+  margin-left: 20px;
+  .state-img {
+    width: 830px;
+    height: auto;
+  }
+}
+
+
+}
+
+.margin-content {
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
 }

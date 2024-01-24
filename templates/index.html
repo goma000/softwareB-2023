@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>メニュー選択</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <div class="input-group search-box">
+                    <span class="input-group-text">〇</span>
+                    <textarea class="form-control" aria-label="Search" placeholder="検索"></textarea>
+                </div>
+                <button class="navbar-toggler navbar-green" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">メニュー選択</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('options') }}">注文詳細入力</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('finalize_order') }}">進捗確認</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('receipt') }}">受け取り</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="content">
+        <!-- タブナビゲーション -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            {% for category in categories %}
+            <li class="nav-item" role="presentation">
+                <!-- JavaScriptを使用してタブのクリックイベントをハンドル -->
+                <a class="nav-link" id="{{ category.category }}-tab" href="#"
+                    onclick="loadMenu('{{ category.category }}')">{{ category.category }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!-- タブコンテンツ -->
+        <div id="menuContent" class="tab-content">
+            <!-- タイル表示されるメニューをここにロード -->
+        </div>
+    </div>
+
+    <script>
+        // カテゴリに基づいてメニューをロードする関数
+        function loadMenu(category) {
+            $.ajax({
+                url: "{{ url_for('menu_by_category', category='') }}/" + category,
+                type: 'GET',
+                success: function (data) {
+                    $('#menuContent').html(data);
+                }
+            });
+        }
+
+        // ページロード時に最初のタブを自動的に選択
+        $(document).ready(function () {
+            $('#myTab .nav-link:first').click();
+            $('#myTab .nav-item:first').addClass('active-hover');
+
+            // タブのクリックイベントをハンドル
+            $('#myTab .nav-link').click(function () {
+                $('#myTab .nav-item').removeClass('active-hover');
+                $(this).parent().addClass('active-hover');
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyfWqJf5uoZzj1kVXpzsRjQELqph3HF4Ei3dD/iHjy76ap0x6X7BpXqj3fl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -2,24 +2,54 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>注文内容確認</title>
+    <title>注文内容の確認</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header></header>
-    <h1>注文内容確認</h1>
-    <p>メニュー: {{ menu.name }} - {{ menu.store }} - ¥{{ menu.price }}</p>
-    <p>割引: -¥{{ discount }}</p>
-    <p>小計: ¥{{ subtotal }}</p>
-    <p>手数料: ¥{{ fee }}</p>
-    <p>合計: ¥{{ total }}</p>
-    <p>支払い方法: {{ payment_method }}</p>
-    <p>受け取り場所: {{ pickup_location }}</p>
-    <p>予想到着時間: 11:35</p>
-    <!-- 値段、割引、手数料、合計などの表示 -->
+    <div class="content margin-content">
+    <h1 class="mb-160 fw-bold">注文内容確認</h1>
+    <div class="row mb-70">
+        <div class="col col-label">注文メニュー</div>
+        <div class="col">{{ menu.name }}</div>
+    </div>
+    <div class="row">
+        <div class="col col-label">受け取り場所</div>
+        <div class="col">{{ pickup_location }}</div>
+    </div>
+    <div class="row mb-70">
+        <div class="col col-label">受け取り時間</div>
+        <!-- <div class="col">{{ pickup_time }}</div> -->
+        <div class="col">12:30</div>
+    </div>
+    <div class="row mb-70">
+        <div class="col col-label">使用クーポン</div>
+        <div class="col">{{ coupon }}</div>
+    </div>
+    <div class="row">
+        <div class="col col-label">お会計</div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col col-label-2">価格</div>
+        <div class="col">¥{{ menu.price }}</div>
+    </div>
+    <div class="row">
+        <div class="col col-label-2">割引</div>
+        <div class="col">-¥{{ discount }}</div>
+    </div>
+    <div class="row">
+        <div class="col col-label-2">手数料</div>
+        <div class="col">¥{{ fee }}</div>
+    </div>
+    <div class="row">
+        <div class="col col-label-3 fw-bold">合計</div>
+        <div class="col fw-bold">¥{{ total }}</div>
+    </div>
     <form action="{{ url_for('finalize_order') }}" method="post">
-        <input type="submit" value="確定">
+        <input class="btn submit-btn" type="submit" value="注文確定">
     </form>
+</div>
 </body>
 </html>

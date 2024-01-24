@@ -16,19 +16,13 @@ class Menu(db.Model):
 @app.route('/')
 def index():
     categories = Menu.query.with_entities(Menu.category).distinct().all()
-    return render_template('menu_selection.html', categories=categories)
+    return render_template('index.html', categories=categories)
 
 @app.route('/menu_by_category/<category>')
 def menu_by_category(category):
     menus = Menu.query.filter_by(category=category).all()
-    return render_template('menu_category.html', menus=menus, category=category)
+    return render_template('menu_card.html', menus=menus, category=category)
 
-
-@app.route('/menu/<category>')
-def menu(category):
-    menus = Menu.query.filter_by(category=category).all()
-    stores = Menu.query.with_entities(Menu.store).distinct().all()
-    return render_template('menu.html', menus=menus, category=category, stores=stores)
 
 
 @app.route('/select_menu', methods=['POST'])
@@ -53,13 +47,14 @@ def calculate_total_price(menu_price, coupon, fee_rate=0.03):
     """注文の合計金額を計算する関数"""
     discount = 0
     if coupon == '5_percent_off':
-        discount = menu_price * 0.05
+        discount = int(menu_price * 0.05)  # 割引を切り捨て整数に
     elif coupon == '100_yen_off':
-        discount = 100
+        discount = 100  # この割引は既に整数
 
-    subtotal = max(menu_price - discount, 0)  # 割引後の小計
-    fee = subtotal * fee_rate  # 手数料
-    total = subtotal + fee  # 合計金額
+    subtotal = max(int(menu_price - discount), 0)  # 割引後の小計を切り捨て整数に
+    fee = int(subtotal * fee_rate)  # 手数料を切り捨て整数に
+    total = subtotal + fee  # 合計金額を計算
+
     return subtotal, discount, fee, total
 
 @app.route('/order_confirmation')
@@ -75,7 +70,7 @@ def order_confirmation():
     else:
         subtotal, discount, fee, total = 0, 0, 0, 0
 
-    return render_template('confirmation.html', menu=menu, subtotal=subtotal, discount=discount, fee=fee, total=total, pickup_location=pickup_location, payment_method=payment_method)
+    return render_template('confirmation.html', menu=menu, subtotal=subtotal, discount=discount, fee=fee, total=total, coupon=coupon, pickup_location=pickup_location, payment_method=payment_method)
 
 
 @app.route('/finalize_order', methods=['POST'])
@@ -83,9 +78,9 @@ def finalize_order():
     # 注文の最終確定前に必要な情報を取得
     menu_id = session.get('selected_menu')
     menu = Menu.query.get(menu_id) if menu_id else None
-    # その他の注文情報を取得して確認画面に渡す
+    state_text = "配達中\nただいま商品を配達中です"
     # ...
-    return render_template('finalize.html', menu=menu)
+    return render_template('finalize.html', menu=menu, state_text=state_text)
 
 @app.route('/receipt')
 def receipt():
