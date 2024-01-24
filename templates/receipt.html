@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>受け取り</h1>
-    <p>ご注文ありがとうございました！</p>
-    <p>注文番号</p>
-    <p>417</p>
-    <a href="{{ url_for('share') }}">SNSでシェアする</a>
+    <header></header>
+    <div class="content margin-content">
+    <p>商品が受取可能です。下記の受取番号を提示して商品を受け取ってください。</p>
+    <div class="number">
+        <img src="{{ url_for('static', filename='number.png') }}" alt="受け取り番号">
+    </div>
+    <div class="share">
+        <img src="{{ url_for('static', filename='share.png') }}" alt="シェアボタン">
+    </div>
 </body>
 </html>
