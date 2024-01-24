@@ -222,6 +222,20 @@ header {
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
+.coupon-menu {
+  margin: 50px;
+  border-radius: 20px;
+  background: rgba(137, 182, 158, 0.50);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.pay-menu {
+  margin: 50px;
+  border-radius: 20px;
+  background: rgba(137, 182, 158, 0.50);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
 .place-check-input {
   margin-top: 115px;
 }
@@ -243,6 +257,10 @@ header {
     border: 2px solid #989898;
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
   }
+}
+
+.height-300 {
+  height: 300px;
 }
 
 .mb-160 {
@@ -302,6 +320,21 @@ header {
     width: 750px;
     height: auto;
   }
+}
+
+.c-price {
+  margin-left: 50px;
+}
+
+.green-box {
+  width: 800px;
+  height: 200px;
+  background: #C4DBCF;
+  border-radius: 20px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 }

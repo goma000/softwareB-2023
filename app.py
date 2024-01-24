@@ -34,7 +34,18 @@ def select_menu():
 def options():
     menu_id = session.get('selected_menu')
     selected_menu = Menu.query.get(menu_id) if menu_id else None
-    return render_template('option.html', selected_menu=selected_menu)
+
+    # クーポン適用後の価格を計算
+    if selected_menu:
+        no_coupon_price = selected_menu.price
+        five_percent_off_price = calculate_total_price(selected_menu.price, '5_percent_off')[3]  # 合計金額のみ使用
+        hundred_yen_off_price = calculate_total_price(selected_menu.price, '100_yen_off')[3]  # 合計金額のみ使用
+    else:
+        no_coupon_price = 0
+        five_percent_off_price = 0
+        hundred_yen_off_price = 0
+
+    return render_template('option.html', selected_menu=selected_menu, no_coupon_price=no_coupon_price,five_percent_off_price=five_percent_off_price, hundred_yen_off_price=hundred_yen_off_price)
 
 @app.route('/select_options', methods=['POST'])
 def select_options():

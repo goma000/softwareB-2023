@@ -219,6 +219,20 @@ header .navbar-collapse {
   -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 }
+.content .coupon-menu {
+  margin: 50px;
+  border-radius: 20px;
+  background: rgba(137, 182, 158, 0.5);
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.content .pay-menu {
+  margin: 50px;
+  border-radius: 20px;
+  background: rgba(137, 182, 158, 0.5);
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
 .content .place-check-input {
   margin-top: 115px;
 }
@@ -249,6 +263,9 @@ header .navbar-collapse {
   border: 2px solid #989898;
   -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
+}
+.content .height-300 {
+  height: 300px;
 }
 .content .mb-160 {
   margin-bottom: 160px;
@@ -306,6 +323,25 @@ header .navbar-collapse {
 .content .share img {
   width: 750px;
   height: auto;
+}
+.content .c-price {
+  margin-left: 50px;
+}
+.content .green-box {
+  width: 800px;
+  height: 200px;
+  background: #C4DBCF;
+  border-radius: 20px;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .margin-content {
