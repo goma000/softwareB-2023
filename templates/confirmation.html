@@ -23,10 +23,12 @@
         <!-- <div class="col">{{ pickup_time }}</div> -->
         <div class="col">12:30</div>
     </div>
+    {% if coupon %}
     <div class="row mb-70">
         <div class="col col-label">使用クーポン</div>
         <div class="col">{{ coupon }}</div>
     </div>
+    {% endif %}
     <div class="row">
         <div class="col col-label">お会計</div>
         <div class="col"></div>
@@ -35,10 +37,12 @@
         <div class="col col-label-2">価格</div>
         <div class="col">¥{{ menu.price }}</div>
     </div>
+    {% if coupon %}
     <div class="row">
         <div class="col col-label-2">割引</div>
         <div class="col">-¥{{ discount }}</div>
     </div>
+    {% endif %}
     <div class="row">
         <div class="col col-label-2">手数料</div>
         <div class="col">¥{{ fee }}</div>

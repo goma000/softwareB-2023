@@ -65,12 +65,25 @@ def order_confirmation():
     pickup_location = session.get('pickup_location')
     payment_method = session.get('payment_method')
 
+    coupon_names = {
+        'no_coupon': None,
+        '5_percent_off': '5%引きクーポン',
+        '100_yen_off': '100円引きクーポン'
+    }
+    coupon_display_name = coupon_names.get(coupon, '不明なクーポン') 
+
+    place_names = {
+        'place1': '63号館カフェテリア',
+        'place2': '52号館前',
+    }
+    pickup_location = place_names.get(pickup_location, '不明な場所')
+
     if menu:
         subtotal, discount, fee, total = calculate_total_price(menu.price, coupon)
     else:
         subtotal, discount, fee, total = 0, 0, 0, 0
 
-    return render_template('confirmation.html', menu=menu, subtotal=subtotal, discount=discount, fee=fee, total=total, coupon=coupon, pickup_location=pickup_location, payment_method=payment_method)
+    return render_template('confirmation.html', menu=menu, subtotal=subtotal, discount=discount, fee=fee, total=total, coupon=coupon_display_name, pickup_location=pickup_location, payment_method=payment_method)
 
 
 @app.route('/finalize_order', methods=['POST'])

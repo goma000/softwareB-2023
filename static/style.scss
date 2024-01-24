@@ -105,6 +105,9 @@ header {
     font-size: 40px;
   }
 }
+.nav-link:hover {
+  border: none !important;
+}
 
 .active-hover {
   width: 28%;
@@ -155,10 +158,10 @@ header {
 
 .submit-btn {
   position:fixed;
-  top: 1400px;
+  top: 1500px;
   left: 650px;
-  min-width: 240px;
-  height: 75px;
+  min-width: 280px;
+  height: 90px;
 }
 
 .btn:first-child:active {

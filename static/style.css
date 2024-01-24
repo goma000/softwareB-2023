@@ -105,6 +105,9 @@ header .navbar-collapse {
   text-align: center;
   font-size: 40px;
 }
+.content .nav-link:hover {
+  border: none !important;
+}
 .content .active-hover {
   width: 28%;
   height: 120px;
@@ -144,10 +147,10 @@ header .navbar-collapse {
 }
 .content .submit-btn {
   position: fixed;
-  top: 1400px;
+  top: 1500px;
   left: 650px;
-  min-width: 240px;
-  height: 75px;
+  min-width: 280px;
+  height: 90px;
 }
 .content .btn:first-child:active {
   background: #0b7f41;
