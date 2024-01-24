@@ -7,7 +7,15 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header></header>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-toggler navbar-green right" href="{{ url_for('index') }}">
+                    <span class="navbar-toggler-icon"></span>
+              </a>
+            </div>
+        </nav>
+  </header>
     <div class="content margin-content">
     <p>商品が受取可能です。下記の受取番号を提示して商品を受け取ってください。</p>
     <div class="number">

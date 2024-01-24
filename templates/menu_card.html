@@ -10,13 +10,13 @@
     <div class="content">
         <div class="row mx-0 content">
             {% for menu in menus %}
-            <div class="col-md-4 m-4">
+            <div class="col-md-4 m-2">
                 <a href="javascript:void(0);" onclick="selectMenu('{{ menu.id }}')" class="card-link">
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-title">{{ menu.name }}</p>
-                        <p class="card-text">¥{{ menu.price }}</p>
                         <p class="card-text"> {{ menu.store }}</p>
+                        <p class="card-title">{{ menu.name }}</p>
+                        <p class="card-text right-bottom">¥{{ menu.price }}</p>
                     </div>
                 </div>
                 </a>

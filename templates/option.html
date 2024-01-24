@@ -14,7 +14,13 @@
 
 <body>
   <header>
-
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-toggler navbar-green right" href="{{ url_for('index') }}">
+                    <span class="navbar-toggler-icon"></span>
+              </a>
+            </div>
+        </nav>
   </header>
   <div class="content">
     <form action="{{ url_for('select_options') }}" method="POST">
@@ -120,7 +126,7 @@
 
       </div>
       <div class="text-center mt-4">
-        <button type="submit" class="btn btn-primary submit-btn">次へ</button>
+        <button type="submit" class="btn submit-btn">次へ</button>
       </div>
     </form>
   </div>

@@ -18,7 +18,9 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <div class="input-group search-box">
-                    <span class="input-group-text">〇</span>
+                    <span class="input-group-text">
+                        <img src="{{ url_for('static', filename='search.png') }}" alt="検索">
+                    </span>
                     <textarea class="form-control" aria-label="Search" placeholder="検索"></textarea>
                 </div>
                 <button class="navbar-toggler navbar-green" type="button" data-bs-toggle="collapse"
